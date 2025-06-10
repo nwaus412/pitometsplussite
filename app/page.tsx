@@ -16,6 +16,9 @@ import {
   BoxIcon as Bottle,
   LinkIcon,
   Pill,
+  Stethoscope,
+  Calendar,
+  Heart,
 } from "lucide-react"
 
 export default function HomePage() {
@@ -62,6 +65,60 @@ export default function HomePage() {
             <span>Перейти в каталог</span>
             <ArrowRight className="h-5 w-5" />
           </Link>
+        </div>
+      </section>
+
+      {/* Veterinary Services Banner */}
+      <section className="py-12 bg-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div>
+                <div className="flex items-center space-x-3 mb-4">
+                  <Stethoscope className="h-10 w-10 text-blue-600" />
+                  <h2 className="text-3xl font-bold text-gray-900">Ветеринарные услуги</h2>
+                </div>
+                <p className="text-gray-600 mb-6 text-lg">
+                  Профессиональная медицинская помощь для ваших питомцев. Опытные врачи, современное оборудование,
+                  круглосуточная поддержка.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link
+                    href="/veterinary"
+                    className="inline-flex items-center justify-center bg-blue-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    <Calendar className="h-5 w-5 mr-2" />
+                    Записаться на прием
+                  </Link>
+                  <a
+                    href="tel:+78341234567"
+                    className="inline-flex items-center justify-center border border-blue-600 text-blue-600 font-medium py-3 px-6 rounded-lg hover:bg-blue-50 transition-colors"
+                  >
+                    <Heart className="h-5 w-5 mr-2" />
+                    Экстренный вызов
+                  </a>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center p-4 bg-blue-50 rounded-lg">
+                  <div className="text-2xl font-bold text-blue-600">24/7</div>
+                  <div className="text-sm text-gray-600">Круглосуточно</div>
+                </div>
+                <div className="text-center p-4 bg-green-50 rounded-lg">
+                  <div className="text-2xl font-bold text-green-600">15+</div>
+                  <div className="text-sm text-gray-600">Лет опыта</div>
+                </div>
+                <div className="text-center p-4 bg-yellow-50 rounded-lg">
+                  <div className="text-2xl font-bold text-yellow-600">500+</div>
+                  <div className="text-sm text-gray-600">Довольных клиентов</div>
+                </div>
+                <div className="text-center p-4 bg-purple-50 rounded-lg">
+                  <div className="text-2xl font-bold text-purple-600">4.9</div>
+                  <div className="text-sm text-gray-600">Рейтинг</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

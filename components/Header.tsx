@@ -26,6 +26,9 @@ export default function Header() {
             <Link href="/categories" className="text-gray-700 hover:text-gray-900 transition">
               Категории
             </Link>
+            <Link href="/veterinary" className="text-gray-700 hover:text-gray-900 transition">
+              Ветуслуги
+            </Link>
             <Link href="/about" className="text-gray-700 hover:text-gray-900 transition">
               О нас
             </Link>

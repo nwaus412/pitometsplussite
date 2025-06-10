@@ -20,6 +20,17 @@ interface CartItem {
   quantity: number
 }
 
+interface VeterinaryAppointment {
+  id: string
+  userId: string
+  serviceId: string
+  doctorId: string
+  date: string
+  time: string
+  status: "scheduled" | "completed" | "cancelled"
+  notes?: string
+}
+
 interface User {
   id: string
   firstName: string
@@ -29,6 +40,7 @@ interface User {
   password: string
   registrationDate: string
   orders: Order[]
+  appointments: VeterinaryAppointment[]
 }
 
 interface Order {
@@ -48,6 +60,7 @@ interface AppState {
   products: Product[]
   users: User[]
   orders: Order[]
+  appointments: VeterinaryAppointment[]
 }
 
 type AppAction =
@@ -59,6 +72,7 @@ type AppAction =
   | { type: "SET_PRODUCTS"; payload: Product[] }
   | { type: "ADD_USER"; payload: User }
   | { type: "ADD_ORDER"; payload: Order }
+  | { type: "ADD_APPOINTMENT"; payload: VeterinaryAppointment }
   | { type: "LOAD_DATA"; payload: Partial<AppState> }
 
 const initialState: AppState = {
@@ -67,6 +81,7 @@ const initialState: AppState = {
   products: [],
   users: [],
   orders: [],
+  appointments: [],
 }
 
 function appReducer(state: AppState, action: AppAction): AppState {
@@ -120,6 +135,21 @@ function appReducer(state: AppState, action: AppAction): AppState {
             ? { ...state.user, orders: [...state.user.orders, action.payload] }
             : state.user,
       }
+    case "ADD_APPOINTMENT":
+      const updatedUsersWithAppointment = state.users.map((user) =>
+        user.id === action.payload.userId
+          ? { ...user, appointments: [...(user.appointments || []), action.payload] }
+          : user,
+      )
+      return {
+        ...state,
+        appointments: [...state.appointments, action.payload],
+        users: updatedUsersWithAppointment,
+        user:
+          state.user?.id === action.payload.userId
+            ? { ...state.user, appointments: [...(state.user.appointments || []), action.payload] }
+            : state.user,
+      }
     case "LOAD_DATA":
       return { ...state, ...action.payload }
     default:
@@ -163,6 +193,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       password: "Demo1234",
       registrationDate: "2025-01-01",
       orders: [],
+      appointments: [],
     }
 
     // Demo products с реальными товарами и изображениями
